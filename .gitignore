@@ -2,8 +2,10 @@ logs
 project/project
 project/target
 target
+bin
 tmp
 .history
+.cache
 dist
 /.idea
 /*.iml

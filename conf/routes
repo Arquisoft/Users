@@ -15,8 +15,8 @@ POST   /api/user            	controllers.API.newUser()
 POST   /api/user/delete/:id 	controllers.API.deleteUser(id: Long)
 DELETE /api/user/:id 			controllers.API.deleteUser(id: Long)
 
-GET    /api2/user            	controllers.API.showUsersJsonHATEOAS()
-GET    /api2/user/:id           controllers.API.showUserJsonHATEOAS(id: Long)
+GET    /api2/user            	controllers.API2.showUsersHATEOAS()
+GET    /api2/user/:id           controllers.API2.showUserHATEOAS(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path

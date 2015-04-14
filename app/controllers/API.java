@@ -20,47 +20,6 @@ public class API extends Controller {
         return ok(Json.toJson(User.all()));
     }
 
-    public static Result showUsersJsonHATEOAS() {
-    	JsonNodeFactory factory = JsonNodeFactory.instance;
-        ArrayNode result = new ArrayNode(factory);
-        for (User user: User.all()) {
-          ObjectNode countryJson = Json.newObject();
-          countryJson.put("email", user.email);
-          countryJson.put("password", user.password);
-          ArrayNode links = new ArrayNode(factory);
-          ObjectNode self = Json.newObject();
-          self.put("rel", "self");
-          self.put("href", routes.API.showUserJsonHATEOAS(user.id).absoluteURL(request()));
-          
-          links.add(self);
-          countryJson.put("links", links);
-          result.add(countryJson);
-        }
-        return ok(result);
-    }
-
-    public static Result showUserJsonHATEOAS(Long id) {
-    	JsonNodeFactory factory = JsonNodeFactory.instance;
-    	
-    	User user = User.findById(id);
-        ObjectNode userJson = Json.newObject();
-        userJson.put("email", user.email);
-        userJson.put("password", user.password);
-        ArrayNode links = new ArrayNode(factory);
-        ObjectNode self = Json.newObject();
-        self.put("rel", "self");
-        self.put("href", routes.API.showUserJsonHATEOAS(user.id).absoluteURL(request()));
-        links.add(self);
-         
-        ObjectNode parent = Json.newObject();
-        parent.put("rel", "parent");
-        parent.put("href", routes.API.showUsersJsonHATEOAS().absoluteURL(request()));
-        links.add(parent);
-
-        userJson.put("links", links);
-    	return ok(userJson);
-    }
-    
     public static Result showUserJson(Long id) {
         return ok(Json.toJson(User.findById(id)));
     }
