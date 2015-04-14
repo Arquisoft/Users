@@ -38,7 +38,11 @@ public class User extends Model {
 	public static void delete(Long id) {
 		finder.ref(id).delete();
 	}
-
+	
+	public static void deleteAll() {
+		finder.all().clear();
+	}
+	
 	public static Finder<Long, User> finder = new Finder(Long.class, User.class);
 	
 }
